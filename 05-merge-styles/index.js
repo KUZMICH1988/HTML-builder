@@ -7,7 +7,11 @@ const projectPath = path.join(__dirname, 'project-dist');
 const bundlePath = path.join(projectPath, 'bundle.css');
 
 // Create or clean bundle.css
-fs.writeFileSync(bundlePath, '');
+fs.writeFile(bundlePath, '', (err) => {
+  if (err) {
+      console.error('Ошибка при записи в файл:', err);
+  }
+});
 
 // Read folder 'styles'
 fs.readdir(stylesPath, (err, files) => {
@@ -42,10 +46,3 @@ fs.readdir(stylesPath, (err, files) => {
   })
 })
 
-
-
-
-// console.log(stylesPath);
-// console.log(projectPath);
-// console.log(bundlePath);
-// console.log(cssFiles);
